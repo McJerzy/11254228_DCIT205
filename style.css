@@ -1,0 +1,13 @@
+.backgroung{
+
+}
+.comSciLogo{
+    width: 250px;
+    height: 41.7px;
+}
+.navigation{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}

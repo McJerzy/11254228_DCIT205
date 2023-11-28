@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles//style_1.css">
+    <link rel="stylesheet" href="./styles//style_2.css">
+    <title>UG | DEPARTMENT OF COMPUTER SCIENCE</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: scroll;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            /* Set the body to full viewport height */
+
+        }
+
+        .ceremony {
+            width: 100%;
+            /* Make the video take up the full width of the screen */
+            height: 100vh;
+            /* Set the height to half of the viewport height */
+            object-fit: cover;
+            /* Cover the entire container */
+            position: absolute;
+            /* Fixed position so it remains in the background */
+            top: 0;
+            left: 0;
+            z-index: -1;
+            /* Place it behind other elements */
+            filter: blur(0px);
+            /* Add a blur effect */
+            color: #9DAAF2;
+        }
+
+        .header {
+            background-color: #9DAAF2;
+            /* Semi-transparent background */
+            color: lightblue;
+            text-align: center;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1;
+            /* Ensure the header is above the video */
+        }
+
+        .comSciLogo {
+            height: 50px;
+            width: auto;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-top: 10px;
+            background-color: #1A2238;
+            color: #9DAAF2;
+
+
+
+        }
+
+        input[type=text] {
+            padding: 8px;
+            font-size: 16px;
+            border: none;
+            border-radius: 3;
+
+        }
+
+        button {
+            padding: 8px 15px;
+            background-color: #F4DB7D;
+            color: #1A2238;
+
+            border-radius: 3;
+            cursor: pointer;
+            border-color: #F4DB7D;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #F4DB7D;
+            color: #FF6A3D;
+            z-index: 1;
+            /* Ensure navigation is above the video */
+            gap: 10px;
+            margin-top: 70px;
+        }
+
+        .navigation a {
+            color: #1A2238;
+            text-decoration: solid;
+            margin: 0 15px;
+        }
+
+
+        h1 {
+            text-align: center;
+            margin: 20px;
+            padding: 20px;
+            /* Add padding */
+            z-index: 1;
+            /* Ensure text is above the video */
+
+            /* Fantasy Font Options */
+            font-family: 'Papyrus', cursive;
+            /* Example 1: Papyrus */
+
+            color: #F4DB7D;
+            /* Set the color of the text */
+            text-shadow: 2px 2px 4px black;
+            /* Add a subtle text shadow */
+            letter-spacing: 2px;
+            /* Adjust letter spacing */
+            font-size: 3em;
+            /* Adjust font size */
+            line-height: 1.4;
+            /* Adjust line height */
+
+            /* Additional Styles */
+            background-color: none;
+            /* Background color */
+            /*border: 2px solid #F4DB7D; /* Border with a color */
+            border-radius: 10px;
+            /* Border radius for rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Box shadow for a subtle lift */
+        }
+
+        h2 {
+
+            color: #9DAAF2;
+            padding: 50px;
+            text-align: center;
+            text-shadow: 2px 2px 4px #F4DB7D;
+            margin-left: 10%;
+            margin-right: 10%;
+            border: #1A2238;
+            border-color: #F4DB7D;
+            padding: 20px;
+            /* Add padding */
+            z-index: 1;
+            /* Ensure text is above the video */
+
+            /* Fantasy Font Options */
+            font-family: 'Copperplate', Fantasy;
+            /* Example 1: Papyrus */
+
+
+            text-shadow: 2px 2px 4px #F4DB7D;
+            /* Add a subtle text shadow */
+            letter-spacing: 2px;
+            /* Adjust letter spacing */
+            font-size: 2.5em;
+            /* Adjust font size */
+            line-height: 1.4;
+            /* Adjust line height */
+            margin-top: 350px;
+            background-color: none;
+            background-position: 100%;
+            text-decoration: underline;
+
+
+
+        }
+
+
+        .intro {
+
+            color: #1A2238;
+
+
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            padding: 50px;
+
+
+
+        }
+
+        h3 {
+            font-size: 25px;
+            line-height: 1.7;
+            text-align: center;
+            font-weight: 300;
+            min-width: 992px;
+            margin-left: 15%;
+            margin-right: 15%;
+            width: 60%;
+            color: #1A2238;
+
+            width: 70%;
+        }
+
+
+        /* Add this to your existing styles */
+        .two {
+            position: relative;
+            z-index: 1;
+            /* Ensure the content is above the bubbles */
+        }
+
+        .bubble-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            /* Place it behind the content */
+        }
+
+        .bubble {
+            position: absolute;
+            background-color: #1A2238;
+            border-radius: 50%;
+            animation: moveBubble linear infinite;
+            background: linear-gradient(45deg, #F4DB7D, #9DAAF2, #1A2238);
+        }
+
+        /* Customize the bubble sizes and positions   rgba(255, 255, 255, 0.5 */
+        .bubble:nth-child(1) {
+            width: 20px;
+            height: 20px;
+            top: 10vh;
+            left: 10vw;
+            animation-duration: 8s;
+        }
+
+        .bubble:nth-child(2) {
+            width: 50px;
+            height: 50px;
+            top: 30vh;
+            left: 20vw;
+            animation-duration: 15s;
+        }
+
+        .bubble:nth-child(3) {
+            width: 25px;
+            height: 25px;
+            top: 50vh;
+            left: 40vw;
+            animation-duration: 12s;
+        }
+
+        .bubble:nth-child(4) {
+            width: 90px;
+            height: 90px;
+            top: 20vh;
+            left: 60vw;
+            animation-duration: 8s;
+        }
+
+        .bubble:nth-child(5) {
+            width: 40px;
+            height: 40px;
+            top: 70vh;
+            left: 30vw;
+            animation-duration: 10s;
+        }
+
+        .bubble:nth-child(6) {
+            width: 70px;
+            height: 70px;
+            top: 80vh;
+            left: 50vw;
+            animation-duration: 30s;
+        }
+
+        @keyframes moveBubble {
+            0% {
+                transform: translateY(100vh) translateX(0);
+            }
+
+            50% {
+                transform: translateY(0) translateX(50vw);
+            }
+
+            100% {
+                transform: translateY(100vh) translateX(0);
+            }
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+
+            animation: animateBackground 10s linear infinite;
+            /* Adjust animation duration */
+        }
+
+        @keyframes animateBackground {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .parent {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1750px;
+
+        }
+
+        .parent ul,
+        .sub_parent ul {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sub_parent {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 450px;
+        }
+
+
+
+        .training {
+            width: 500px;
+
+
+        }
+
+        .one {
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            line-height: 1.9;
+            text-align: center;
+            font-weight: 300;
+            margin-left: 10%;
+            margin-right: 10%;
+
+        }
+
+        .be {
+            align-items: center;
+            justify-content: center;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+
+        }
+
+        /* Add this to your existing styles */
+
+        .a5 {
+            width: 100%;
+            height: 70vh;
+            object-fit: cover;
+            position: absolute;
+            z-index: -1;
+            /* Ensure the image is behind other elements */
+            margin-top: 1180px;
+        }
+
+        .supdates {
+            width: 100%;
+            height: 200px;
+            text-align: center;
+            position: absolute;
+            top: 40%;
+            /* Center the div vertically */
+            transform: translateY(-50%);
+            z-index: 1;
+            /* Ensure the supdates div is above the image */
+            color: #fff;
+            /* Set the text color for better visibility */
+            /*background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background */
+            padding: 20px;
+            /* Add padding for better appearance */
+        }
+
+        .touch {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size: xx-large;
+            margin-bottom: 70px;
+
+        }
+
+        .sign {
+            margin-top: 50%;
+        }
+
+        .so {
+            align-items: center;
+            justify-content: center;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            display: flex;
+            line-height: 3px;
+            color: #9DAAF2;
+
+        }
+
+        .mother {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1700px;
+        }
+
+        .three {
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            line-height: 1.9;
+            text-align: center;
+            font-weight: 300;
+            margin-left: 10%;
+            margin-right: 10%;
+
+        }
+
+        .footer {
+            margin-top: 150px;
+        }
+    </style>
+</head>
+<div class="change">
+
+    <body class="body">
+        <img class="ceremony" src="../web pages projects/IMAGES/ceremony-1866532_1920.jpg" alt="ceremony">
+        
+
+        <div>
+            <div class="header">
+                <img class="comSciLogo" src="./IMAGES/comScience_logo.png"
+                    alt="a logo of computer science department">
+                <div class="search-container">
+                    <input type="text" placeholder="Search..." name="search">
+                    <button type="submit">Search</button>
+                </div>
+            </div>
+
+            <!-- <nav>
+                <ul class="navigation">
+                    <img class="comSciLogo" src="../IMAGES/comScience_logo.png"
+                        alt="a logo of computer science department">
+                    <a href="about.html" title="Know more information"><strong>About</strong></a>
+                    <a href="faculty.html" title="Discover our faculty and staff members"><strong>Faculty &
+                            Staff</strong></a>
+                    <a href="programs.html" title="Available programs"><strong>Academic Programs</strong></a>
+                    <a href="events.html" title="View current happenings"><strong>News and Events</strong></a>
+                    <a href="contact.html" title="Click to view current happenings"><strong>Contact Us</strong></a>
+                    <a href="social.html" title="Social media handles"><strong>Social Media Integration</strong></a>
+                    <a href="alumni.html" title="Prosperous past students"><strong>Alumni</strong></a>
+                    <a href="gallery.html" title="More images and videos"><strong>Gallery</strong></a>
+                    <a href="faqs.html" title="Frequently Asked Questions"><strong>FAQs</strong></a>
+                </ul>
+            </nav> -->
+
+
+        </div>
+
+        <div class="navigation">
+            <a href="index.html" title="Know more information"><strong>Home</strong></a>
+            <a href="about.html" title="Know more information"><strong>About</strong></a>
+            <a href="faculty.html" title="Discover our faculty and staff members"><strong>Faculty & Staff</strong></a>
+            <a href="programs.html" title="Available programs"><strong>Academic Programs</strong></a>
+            <a href="events.html" title="View current happenings"><strong>News and Events</strong></a>
+            <a href="contact.html" title="Click to view current happenings"><strong>Contact Us</strong></a>
+            <a href="social.html" title="Social media handles"><strong>Social Media Integration</strong></a>
+            <a href="alumni.html" title="Prosperous past students"><strong>Alumni</strong></a>
+            <a href="gallery.html" title="More images and videos"><strong>Gallery</strong></a>
+            <a href="faqs.html" title="Frequently Asked Questions"><strong>FAQs</strong></a>
+        </div>
+
+        <h1>Academic Programs</h1>
+
+        <div class="two">
+            <div class="bubble-container">
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <h2>
+                    Embarking on the journey to becoming an UGDCS student
+                </h2>
+
+                <h3>
+                    At UGDCS, our commitment to technology-based education takes precedence, providing our students with
+                    a distinct advantage in the competitive realms of business and industry. We seamlessly integrate
+                    theory and practice, empowering students to craft innovative solutions in Telecommunications,
+                    Business, and ICT. As pioneers of transnational education, we boast well-established international
+                    partnerships and a burgeoning global perspective. Choosing UGDCS means unlocking your potential for
+                    greatness.
+
+                    Each year, we warmly welcome families into the UGDCS community, collaborating closely to guide
+                    students through an educational journey that readies them for success in an ever-evolving world.
+                    This unique approach, known as the UGDCS Advantage, is best grasped through firsthand experience.
+
+                    To facilitate online connections for applicants and prospective students, various members of our
+                    community lead webcasts, sharing valuable insights into our admissions process and the enriching
+                    UGDCS student experience. Join us on this transformative educational journey, where technology meets
+                    innovation, and potential meets greatness.
+                </h3>
+
+            </div>
+
+            <div>
+                <img class="a5" src="./IMAGES/stadium-4181150_1920.jpg" alt="a picture of auditorium">
+
+                ` <div class="supdates">
+                    <strong class="touch"> Stay in Touch</strong>
+                    <p><button><a class="sign" href="about.html"><strong> Sign Up for UGDCS Updates >>
+                                </strong></a></button></p>
+                </div>
+
+
+            </div>
+
+
+            <div>
+                <div class="parent">
+                    <div class="one">
+                        <h4>
+
+                            <strong class="be">
+                                Be a Student Now
+                                <ul>
+                                    <a href="about.html"><strong>Online Application Portal</strong></a>
+                                    <a href="programs.html"><strong>Undergraduate Programmes</strong></a>
+                                    <a href="events.html"><strong>Undergraduate Tuition & Other Fees</strong></a>
+                                    <a href="contact.html"><strong>Master in Computer Science</strong></a>
+                                    <a href="social.html"><strong>Scholarships at UGDCS</strong></a>
+                                </ul>
+                            </strong>
+                        </h4>
+
+                    </div>
+
+                    <div>
+                        <img class="training" src="./IMAGES/ceremony-1866532_1920.jpg"
+                            alt="a picture of graduate students ">
+                    </div>
+                </div>
+
+
+                <div class="sub_parent">
+                    <div>
+                        <img class="training" src="./IMAGES/technology-3435575_1920.jpg"
+                            alt="a blur picture of a student pointing on technological screeen">
+                    </div>
+                    <div class="one">
+                        <h4>
+
+                            <strong class="be">
+                                Get To Know Us
+                                <ul>
+                                    <a href="about.html"><strong>Our Organization</strong></a>
+                                    <a href="programs.html"><strong>Our Community</strong></a>
+                                    <a href="events.html"><strong>Distance Education</strong></a>
+                                    <a href="contact.html"><strong>Regular Student</strong></a>
+                                    <a href="social.html"><strong>Building Our Future</strong></a>
+                                </ul>
+                            </strong>
+                        </h4>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="footer">
+                <footer id="t3-footer" class="wrap t3-footer">
+                    <div class="container">
+                        <div class="t3-footer-inner">
+                            <div class="t3-footer-1-title">
+                                <div class="t3-module module " id="Mod147">
+                                    <div class="module-inner">
+                                        <h3 class="module-title "><span>Quick Links</span></h3>
+                                        <div class="module-ct">
+
+                                            <div class="custom">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="footerContent t3-footnav">
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-3">
+                                        <div class="t3-module module " id="Mod149">
+                                            <div class="module-inner">
+                                                <div class="module-ct">
+
+                                                    <div class="custom">
+                                                        <h4>University</h4>
+                                                        <ul>
+                                                            <li><a href="https://www.bing.com/ck/a?!&&p=7b95d888b86c7b66JmltdHM9MTcwMTEyOTYwMCZpZ3VpZD0wZmY4ZTI5Ni1iZjIxLTYwOGYtM2FjNS1mMTlhYmU4YjYxMDQmaW5zaWQ9NTQwOA&ptn=3&ver=2&hsh=3&fclid=0ff8e296-bf21-608f-3ac5-f19abe8b6104&psq=university+of+ghana+computer+science+department+email&u=a1aHR0cHM6Ly93d3cudWcuZWR1LmdoL2NlL3Zpc2l0b3JzL2NvbnRhY3RfdXMjOn46dGV4dD1TY2hvb2wlMjBvZiUyMEVuZ2luZWVyaW5nJTIwU2NpZW5jZXMlMjBVbml2ZXJzaXR5JTIwb2YlMjBHaGFuYSUyMFAuTy4sR2hhbmElMjBlbWFpbCUzQSUyMGNvbXBlbmclNDB1Zy5lZHUuZ2glMjBUZWxlcGhvbmUlMjBOdW1iZXIlM0ElMjAyMzMtMjgtOTEwLTkxMDYlMjBGYXglM0ElMjAyMzMtMjEtNTE3NzQx&ntb=1"
+                                                                    target="_blank" rel="#">Webmail</a></li>
+                                                            <li><a
+                                                                    href="https://www.bing.com/ck/a?!&&p=7b95d888b86c7b66JmltdHM9MTcwMTEyOTYwMCZpZ3VpZD0wZmY4ZTI5Ni1iZjIxLTYwOGYtM2FjNS1mMTlhYmU4YjYxMDQmaW5zaWQ9NTQwOA&ptn=3&ver=2&hsh=3&fclid=0ff8e296-bf21-608f-3ac5-f19abe8b6104&psq=university+of+ghana+computer+science+department+email&u=a1aHR0cHM6Ly93d3cudWcuZWR1LmdoL2NlL3Zpc2l0b3JzL2NvbnRhY3RfdXMjOn46dGV4dD1TY2hvb2wlMjBvZiUyMEVuZ2luZWVyaW5nJTIwU2NpZW5jZXMlMjBVbml2ZXJzaXR5JTIwb2YlMjBHaGFuYSUyMFAuTy4sR2hhbmElMjBlbWFpbCUzQSUyMGNvbXBlbmclNDB1Zy5lZHUuZ2glMjBUZWxlcGhvbmUlMjBOdW1iZXIlM0ElMjAyMzMtMjgtOTEwLTkxMDYlMjBGYXglM0ElMjAyMzMtMjEtNTE3NzQx&ntb=1">Student
+                                                                    Information System</a></li>
+                                                            <li><a href="/academics/academic-calendars.html">Academic
+                                                                    Calendar</a></li>
+                                                            <li><a href="#">Institutional
+                                                                    Repository</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-3">
+                                        <div class="t3-module module " id="Mod150">
+                                            <div class="module-inner">
+                                                <div class="module-ct">
+
+                                                    <div class="custom">
+                                                        <h4>New Here?</h4>
+                                                        <ul>
+                                                            <li><a href="#">Our Campus</a></li>
+                                                            <li><a href="https://www.bing.com/search?q=university+of+ghana+alumni&filters=dtbk:%22MCFrZ192NF9hbHVtbmkha2dfdjRfYWx1bW5pIWRmOGJmMzhjLTFhZTYtM2ZlOC05MjgyLTMwYzE3YjA0NmM4YQ%3d%3d%22&FORM=DEPNAV"
+                                                                    target="_blank"
+                                                                    rel="https://www.bing.com/search?q=university+of+ghana+alumni&filters=dtbk:%22MCFrZ192NF9hbHVtbmkha2dfdjRfYWx1bW5pIWRmOGJmMzhjLTFhZTYtM2ZlOC05MjgyLTMwYzE3YjA0NmM4YQ%3d%3d%22&FORM=DEPNAV">Alumni
+                                                                    Stories</a></li>
+                                                            <li><a href="#" target="_blank"
+                                                                    rel="https://www.bing.com/ck/a?!&&p=8ad538f4c29da459JmltdHM9MTcwMTEyOTYwMCZpZ3VpZD0wZmY4ZTI5Ni1iZjIxLTYwOGYtM2FjNS1mMTlhYmU4YjYxMDQmaW5zaWQ9NTE4Nw&ptn=3&ver=2&hsh=3&fclid=0ff8e296-bf21-608f-3ac5-f19abe8b6104&psq=university+of+ghana+campus+life&u=a1aHR0cHM6Ly9uZXcudWcuZWR1LmdoL2FjYy9zdHVkZW50LWxpZmU&ntb=1r">Campus
+                                                                    Life Blog</a></li>
+                                                            <li><a
+                                                                    href="https://www.bing.com/ck/a?!&&p=860c2ec7c262d1cdJmltdHM9MTcwMTEyOTYwMCZpZ3VpZD0wZmY4ZTI5Ni1iZjIxLTYwOGYtM2FjNS1mMTlhYmU4YjYxMDQmaW5zaWQ9NTE4NA&ptn=3&ver=2&hsh=3&fclid=0ff8e296-bf21-608f-3ac5-f19abe8b6104&psq=university+of+ghana+awards&u=a1aHR0cHM6Ly93d3cudWcuZWR1LmdoL25ld3MvMjAyMDIwMjEtdmljZS1jaGFuY2VsbG9yJUUyJTgwJTk5cy1hbm51YWwtYWNhZGVtaWMtYXdhcmRzLWhlbGQ&ntb=1">Awards
+                                                                    &amp; Recognition</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix visible-xs-block visible-sm-block"></div>
+                                    <div class="col-xs-6 col-sm-6 col-md-3">
+                                        <div class="t3-module module " id="Mod139">
+                                            <div class="module-inner">
+                                                <div class="module-ct">
+
+                                                    <div class="custom">
+                                                        <h4>For Businesses</h4>
+                                                        <ul>
+                                                            <li><a
+                                                                    href="https://www.bing.com/ck/a?!&&p=2975cc87dc411c8cJmltdHM9MTcwMTEyOTYwMCZpZ3VpZD0wZmY4ZTI5Ni1iZjIxLTYwOGYtM2FjNS1mMTlhYmU4YjYxMDQmaW5zaWQ9NTE3Nw&ptn=3&ver=2&hsh=3&fclid=0ff8e296-bf21-608f-3ac5-f19abe8b6104&psq=university+of+ghana+campus+life&u=a1aHR0cHM6Ly9uZXcudWcuZWR1LmdoL2FjYy9zdHVkZW50LWxpZmU&ntb=1">Career
+                                                                    Services Office</a></li>
+                                                            <li><a
+                                                                    href="https://www.bing.com/ck/a?!&&p=9baddc44a967b835JmltdHM9MTcwMTEyOTYwMCZpZ3VpZD0wZmY4ZTI5Ni1iZjIxLTYwOGYtM2FjNS1mMTlhYmU4YjYxMDQmaW5zaWQ9NTE4MA&ptn=3&ver=2&hsh=3&fclid=0ff8e296-bf21-608f-3ac5-f19abe8b6104&psq=university+of+ghana+computer+science+requirements&u=a1aHR0cHM6Ly9kY3MudWcuZWR1LmdoL3VuZGVyZ3JhZHVhdGU&ntb=1">Recruit
+                                                                    UGDCS Students</a></li>
+                                                            <li><a
+                                                                    href="https://www.bing.com/ck/a?!&&p=7229ebddb9ad5365JmltdHM9MTcwMTEyOTYwMCZpZ3VpZD0wZmY4ZTI5Ni1iZjIxLTYwOGYtM2FjNS1mMTlhYmU4YjYxMDQmaW5zaWQ9NTE5OQ&ptn=3&ver=2&hsh=3&fclid=0ff8e296-bf21-608f-3ac5-f19abe8b6104&psq=university+of+ghana+computer+science+jobs&u=a1aHR0cHM6Ly93d3cudWcuZWR1LmdoL2VtcGxveW1lbnQtb3Bwb3J0dW5pdGllcy92YWNhbmN5LWFubm91bmNlbWVudHMtdW5pdmVyc2l0eS1naGFuYS1jb21wdXRpbmctc3lzdGVtcw&ntb=1">Job
+                                                                    Openings</a></li>
+                                                            <li><a href="https://ashesi.org">Support UGDCS</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-3">
+                                        <div class="t3-module module " id="Mod93">
+                                            <div class="module-inner">
+                                                <div class="module-ct">
+
+                                                    <div class="custom">
+                                                        <div class="subscriber">
+                                                            <form id="#" action="#" method="post" name="ccoptin"
+                                                                target="_blank">
+                                                                <fieldset class="cc_data"><input id="jform_email"
+                                                                        class="validate-email required inputbox "
+                                                                        name="ea" required="required" size="30"
+                                                                        type="email" value="Your Email Address"> <input
+                                                                        class="button jform_button" name="Subscribe"
+                                                                        type="submit" value="Subscribe"></fieldset>
+                                                                <input name="m" type="hidden" value="1100399893200">
+                                                                <input name="p" type="hidden" value="oi">
+                                                            </form>
+                                                        </div>
+                                                        <p><a href="https://www.bing.com/ck/a?!&&p=68d9bbba33b0c2edJmltdHM9MTcwMTEyOTYwMCZpZ3VpZD0wZmY4ZTI5Ni1iZjIxLTYwOGYtM2FjNS1mMTlhYmU4YjYxMDQmaW5zaWQ9NTE3Nw&ptn=3&ver=2&hsh=3&fclid=0ff8e296-bf21-608f-3ac5-f19abe8b6104&psq=university+of+ghana+computer+science+facebook&u=a1aHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2Rjc3VnLw&ntb=1"
+                                                                rel="alternate"><img
+                                                                    title="Stay connected with us on Facebook"
+                                                                    src="/images/social_media/facebook.png"
+                                                                    alt="Stay connected with us on Facebook"
+                                                                    height="40"></a>&nbsp;<a
+                                                                href="https://www.bing.com/ck/a?!&&p=d78a90cd18312a69JmltdHM9MTcwMTEyOTYwMCZpZ3VpZD0wZmY4ZTI5Ni1iZjIxLTYwOGYtM2FjNS1mMTlhYmU4YjYxMDQmaW5zaWQ9NTE3Mw&ptn=3&ver=2&hsh=3&fclid=0ff8e296-bf21-608f-3ac5-f19abe8b6104&psq=university+of+ghana++twitter&u=a1aHR0cHM6Ly90d2l0dGVyLmNvbS9Vbml2b2ZHaGFuYQ&ntb=1"
+                                                                rel="alternate"><img
+                                                                    title="Stay connected with us on Twitter"
+                                                                    src="/images/social_media/tweeter.png"
+                                                                    alt="Stay connected with us on Twitter"
+                                                                    height="40"></a>&nbsp;<a
+                                                                href="https://www.bing.com/ck/a?!&&p=6ab665d6c9706438JmltdHM9MTcwMTEyOTYwMCZpZ3VpZD0wZmY4ZTI5Ni1iZjIxLTYwOGYtM2FjNS1mMTlhYmU4YjYxMDQmaW5zaWQ9NTE5MA&ptn=3&ver=2&hsh=3&fclid=0ff8e296-bf21-608f-3ac5-f19abe8b6104&psq=university+of+ghana+computer+science+youtube&u=a1aHR0cHM6Ly93d3cueW91dHViZS5jb20vdXNlci9Vbml2ZXJzaXR5R2hhbmE&ntb=1"
+                                                                rel="alternate"><img
+                                                                    title="Stay connected with us on YouTube"
+                                                                    src="/images/social_media/youtube.png"
+                                                                    alt="Stay connected with us on YouTube"
+                                                                    height="40"></a><span
+                                                                class="break-line">&nbsp;</span><a
+                                                                href="https://www.bing.com/ck/a?!&&p=b2e11d896c025f86JmltdHM9MTcwMTEyOTYwMCZpZ3VpZD0wZmY4ZTI5Ni1iZjIxLTYwOGYtM2FjNS1mMTlhYmU4YjYxMDQmaW5zaWQ9NTIwMA&ptn=3&ver=2&hsh=3&fclid=0ff8e296-bf21-608f-3ac5-f19abe8b6104&psq=university+of+ghana+computer+science+linkedin&u=a1aHR0cHM6Ly9naC5saW5rZWRpbi5jb20vaW4vamFtYWwtZGVlbi1hYmR1bGFpLTJiMDZiNjI5&ntb=1"
+                                                                rel="alternate"><img
+                                                                    title="Stay connected with us on Linkedin"
+                                                                    src="/images/social_media/linkedin.png"
+                                                                    alt="Stay connected with us on Linkedin"
+                                                                    height="40"></a>&nbsp;<a
+                                                                href="https://www.bing.com/ck/a?!&&p=3a5eaa24fa8e9e0fJmltdHM9MTcwMTEyOTYwMCZpZ3VpZD0wZmY4ZTI5Ni1iZjIxLTYwOGYtM2FjNS1mMTlhYmU4YjYxMDQmaW5zaWQ9NTE4Nw&ptn=3&ver=2&hsh=3&fclid=0ff8e296-bf21-608f-3ac5-f19abe8b6104&psq=university+of+ghana+computer+science+instagram&u=a1aHR0cHM6Ly93d3cuaW5zdGFncmFtLmNvbS91bml2ZXJzaXR5b2ZnaGFuYS8&ntb=1"
+                                                                rel="alternate"><img
+                                                                    src="/images/social_media/Instagram.jpg" alt=""
+                                                                    height="40"></a>&nbsp;<a href="#"
+                                                                rel="alternate"><img
+                                                                    src="/images/social_media/Medium.png" alt=""
+                                                                    height="40"></a></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="t3-footer-2-title">
+                                <div class="t3-module module " id="Mod148">
+                                    <div class="module-inner">
+                                        <h3 class="module-title "><span>Contact Us</span></h3>
+                                        <div class="module-ct">
+
+                                            <div class="custom">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="footerContent2">
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-3">
+                                        <div class="t3-module module " id="Mod94">
+                                            <div class="module-inner">
+                                                <div class="module-ct">
+
+                                                    <div class="custom">
+                                                        <h4>Street Address</h4>
+                                                        <p>1 University Of Ghana, Legon Campus, <br>Opposite Mathematics
+                                                            Department, G/R (<a
+                                                                href="https://www.bing.com/maps?osid=3103ebd6-79d7-487a-ae91-03910a0bf88b&cp=5.650835~-0.21961&lvl=13.38&pi=0&imgid=5ddf1528-4520-4170-832d-63ed2a8c12ae&v=2&sV=2&form=S00027"
+                                                                target="_blank" rel="noopener noreferrer">See Map
+                                                                Here</a>)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-3">
+                                        <div class="t3-module module " id="Mod95">
+                                            <div class="module-inner">
+                                                <div class="module-ct">
+
+                                                    <div class="custom">
+                                                        <h4>Postal Address</h4>
+                                                        <p>PMB CT3, <br>Cantonments, Accra.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix visible-xs-block visible-sm-block"></div>
+                                    <div class="col-xs-6 col-sm-6 col-md-3">
+                                        <div class="t3-module module " id="Mod151">
+                                            <div class="module-inner">
+                                                <div class="module-ct">
+
+                                                    <div class="custom">
+                                                        <h4>Phone &amp; Email</h4>
+                                                        <p>(T) +233 501 382 035 <br>(E) <a
+                                                                href="mailto:dcs@ug.edu.gh">dcs@ug.edu.gh</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-3">
+                                        <div class="t3-module module " id="Mod152">
+                                            <div class="module-inner">
+                                                <div class="module-ct">
+
+                                                    <div class="custom">
+                                                        <h4>See Also</h4>
+                                                        <div class="caption">+&nbsp;<a href="#" target="_blank"
+                                                                rel="noopener noreferrer">UGDCS
+                                                                Foundation</a><br>+<a href="#" target="_blank"
+                                                                rel="noopener noreferrer">&nbsp;Climate
+                                                                Innovation Centre</a></div>
+                                                        <div class="caption"><a href="https://ug.edu.gh/">+
+                                                                Education Collaborative</a></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <section class="t3-copyright">
+                                <div class="footerContent3">
+                                    <div class="row">
+                                        <div class="col-xs-6 col-sm-6 col-md-3">
+
+
+                                            <div class="custom">
+                                                <p><img src="./IMAGES/University-of-Ghana.jpg"
+                                                        width="300"></p>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6 col-md-9">
+                                            <div class="row copy-info">
+                                                <div class="col-xs-12 col-sm-12 col-md-8">
+
+
+                                                    <div class="custom">
+                                                        <p>©&nbsp;University of Ghana. Est. 1948.&nbsp; All rights
+                                                            reserved.</p>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-4">
+
+
+                                                    <div class="custom">
+                                                        <ul>
+                                                            <li><a href="#">Site Policies</a></li>
+                                                            <li><a
+                                                                    href="https://www.bing.com/maps?osid=f27edf36-6ac1-4c89-8efe-c5c335d50880&cp=5.648633~-0.208293&lvl=14.07&pi=0&v=2&sV=2&form=S00027&amp;id=1">Site
+                                                                    Map</a></li>
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+
+    </body>
+
+</html>
